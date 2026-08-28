@@ -32,7 +32,7 @@ Error generating stack: `+e.message+`
     .leadership{row-gap:5.5rem}
     .leadership>div:nth-child(2){border-left:1px solid var(--line);color:var(--muted);padding-left:4rem}
     .leadership>div:nth-child(2) p{margin-bottom:1.5rem}
-    @media (max-width:900px){.richSpacer{display:none}}
+    @media (max-width:900px){.richSpacer .bioPortrait{margin:1.6rem auto 0}}
   </style>
   <script>
   (function(){
@@ -54,7 +54,7 @@ Error generating stack: `+e.message+`
         if(document.getElementById("richBio"))return;
         var sec=document.querySelector("section.leadership");if(!sec)return;
         var joe=sec.querySelector(":scope > div:nth-child(2)");if(!joe)return;
-        var spacer=document.createElement("div");spacer.className="richSpacer";spacer.setAttribute("aria-hidden","true");
+        var spacer=document.createElement("div");spacer.className="richSpacer";var rfig=document.createElement("figure");rfig.className="bioPortrait";var rimg=document.createElement("img");rimg.src="/rich-bio.jpg";rimg.width=896;rimg.height=1088;rimg.loading="lazy";rimg.decoding="async";rimg.alt="Richard Suplee, Vice President of Revenue at Argos Legal Partners";rfig.appendChild(rimg);spacer.appendChild(rfig);
         var d=document.createElement("div");d.id="richBio";
         var h=document.createElement("h3");h.textContent="Richard Suplee";d.appendChild(h);
         var s=document.createElement("span");s.textContent="Vice President of Revenue";d.appendChild(s);
