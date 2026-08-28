@@ -29,6 +29,10 @@ Error generating stack: `+e.message+`
     .contactLinks a.linkedin{position:relative;top:1px}
     .footerLinkedin{margin-top:.55rem}
     @media (max-width:900px){.leadership .bioPortrait{max-width:300px;margin:1.6rem auto 0}}
+    .leadership{row-gap:5.5rem}
+    .leadership>div:nth-child(2){border-left:1px solid var(--line);color:var(--muted);padding-left:4rem}
+    .leadership>div:nth-child(2) p{margin-bottom:1.5rem}
+    @media (max-width:900px){.richSpacer{display:none}}
   </style>
   <script>
   (function(){
@@ -45,8 +49,33 @@ Error generating stack: `+e.message+`
         fig.appendChild(img);left.appendChild(fig);
       }catch(e){}
     }
-    new MutationObserver(inject).observe(document.documentElement,{childList:true,subtree:true});
-    if(document.readyState!=="loading")inject();else document.addEventListener("DOMContentLoaded",inject);
+    function injectRich(){
+      try{
+        if(document.getElementById("richBio"))return;
+        var sec=document.querySelector("section.leadership");if(!sec)return;
+        var joe=sec.querySelector(":scope > div:nth-child(2)");if(!joe)return;
+        var spacer=document.createElement("div");spacer.className="richSpacer";spacer.setAttribute("aria-hidden","true");
+        var d=document.createElement("div");d.id="richBio";
+        var h=document.createElement("h3");h.textContent="Richard Suplee";d.appendChild(h);
+        var s=document.createElement("span");s.textContent="Vice President of Revenue";d.appendChild(s);
+        var paras=[
+          "Richard Suplee leads revenue strategy and client development at Argos Legal Partners. He brings more than 13 years of experience developing growth strategies, institutional partnerships, and high-trust client relationships across financial services, SaaS, and education technology.",
+          "Richard began his career at New York Life, where he ranked among the top 1% of producers and qualified for membership in the Million Dollar Round Table. Advising clients through complex and consequential financial decisions established the consultative, relationship-driven approach he brings to revenue leadership today.",
+          "He later served as Chief of Staff to the Chief Sales Officer at BDC Universal, where he led forecasting, planning, and sales operations, and as Director of Sales and Partnerships at Cirkled In, where he developed institutional relationships with universities, school systems, and financial institutions. Richard has also advised enterprise AI infrastructure and go-to-market initiatives through Aortem and Invest Seed and co-founded Chief of Staff Roundtable, a global professional community for chiefs of staff.",
+          "At Argos, Richard oversees market development, forecasting, and revenue operations. He brings structure and accountability to the firm\u2019s growth while helping ensure that every engagement remains selective, measured, and relationship-driven."
+        ];
+        for(var i=0;i<paras.length;i++){var p=document.createElement("p");p.textContent=paras[i];d.appendChild(p);}
+        var cl=document.createElement("div");cl.className="contactLinks";
+        var a1=document.createElement("a");a1.href="mailto:Rich@ArgosLegalPartners.com";a1.textContent="Rich@ArgosLegalPartners.com";cl.appendChild(a1);
+        var a2=document.createElement("a");a2.className="linkedin";a2.href="https://www.linkedin.com/in/richard-suplee-2370ab5a/";a2.target="_blank";a2.rel="noreferrer";a2.setAttribute("aria-label","Richard Suplee on LinkedIn");
+        a2.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V8.98h3.42v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.29ZM5.32 7.41a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.04H3.54V8.98H7.1v11.47Z"/></svg>';
+        cl.appendChild(a2);d.appendChild(cl);
+        sec.appendChild(spacer);sec.appendChild(d);
+      }catch(e){}
+    }
+    function runAll(){inject();injectRich();}
+    new MutationObserver(runAll).observe(document.documentElement,{childList:true,subtree:true});
+    if(document.readyState!=="loading")runAll();else document.addEventListener("DOMContentLoaded",runAll);
   })();
   </script>
 </body>
