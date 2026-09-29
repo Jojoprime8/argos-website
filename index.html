@@ -66,12 +66,12 @@ Error generating stack: `+e.message+`
       try{
         if(document.getElementById("richBio"))return;
         var sec=document.querySelector("section.leadership");if(!sec)return;
-        var spacer=document.createElement("div");spacer.className="richSpacer";var rfig=document.createElement("figure");rfig.className="bioPortrait";var rimg=document.createElement("img");rimg.src="/rich-bio.jpg";rimg.width=896;rimg.height=1088;rimg.loading="lazy";rimg.decoding="async";rimg.alt="Richard Suplee, Vice President of Revenue at Argos Legal Partners";rfig.appendChild(rimg);spacer.appendChild(rfig);
+        var spacer=document.createElement("div");spacer.className="richSpacer";var rfig=document.createElement("figure");rfig.className="bioPortrait";var rimg=document.createElement("img");rimg.src="/rich-bio.jpg";rimg.width=896;rimg.height=1088;rimg.loading="lazy";rimg.decoding="async";rimg.alt="Richard Suplee, Chief Operating Officer at Argos Legal Partners";rfig.appendChild(rimg);spacer.appendChild(rfig);
         var d=document.createElement("div");d.id="richBio";
         var h=document.createElement("h3");h.textContent="Richard Suplee";d.appendChild(h);
-        var s=document.createElement("span");s.textContent="Vice President of Revenue";d.appendChild(s);
+        var s=document.createElement("span");s.textContent="Chief Operating Officer";d.appendChild(s);
         var paras=[
-          "Richard Suplee leads revenue strategy and client development at Argos Legal Partners. He brings more than 13 years of experience developing growth strategies, institutional partnerships, and high-trust client relationships across financial services, SaaS, and education technology.",
+          "Richard Suplee serves as Chief Operating Officer at Argos Legal Partners. He brings more than 13 years of experience developing growth strategies, institutional partnerships, and high-trust client relationships across financial services, SaaS, and education technology.",
           "Richard began his career at New York Life, where he ranked among the top 1% of producers and qualified for membership in the Million Dollar Round Table. Advising clients through complex and consequential financial decisions established the consultative, relationship-driven approach he brings to revenue leadership today.",
           "He later served as Chief of Staff to the Chief Sales Officer at BDC Universal, where he led forecasting, planning, and sales operations, and as Director of Sales and Partnerships at Cirkled In, where he developed institutional relationships with universities, school systems, and financial institutions. Richard has also advised enterprise AI infrastructure and go-to-market initiatives through Aortem and Invest Seed and co-founded Chief of Staff Roundtable, a global professional community for chiefs of staff.",
           "At Argos, Richard oversees market development, forecasting, and revenue operations. He brings structure and accountability to the firm\u2019s growth while helping ensure that every engagement remains selective, measured, and relationship-driven."
@@ -85,7 +85,25 @@ Error generating stack: `+e.message+`
         sec.appendChild(spacer);sec.appendChild(d);
       }catch(e){}
     }
-    function runAll(){injectLayout();inject();injectRich();}
+    function injectRob(){
+      var sec=document.querySelector("section.leadership");
+      var rich=document.getElementById("richBio");
+      if(!sec||!rich||document.getElementById("robBio"))return;
+      var photoCol=document.createElement("div");photoCol.className="richSpacer";
+      var fig=document.createElement("figure");fig.className="bioPortrait";
+      var img=document.createElement("img");img.src="/rob-bio.jpg";
+      img.width=1264;img.height=1568;img.loading="lazy";img.decoding="async";
+      img.alt="Rob, Vice President of Sales at Argos Legal Partners";
+      fig.appendChild(img);photoCol.appendChild(fig);
+      var bio=document.createElement("div");bio.id="robBio";
+      var name=document.createElement("h3");name.textContent="Rob";bio.appendChild(name);
+      var title=document.createElement("span");title.textContent="Vice President of Sales";bio.appendChild(title);
+      var paragraph=document.createElement("p");
+      paragraph.textContent="Rob serves as Vice President of Sales at Argos Legal Partners.";
+      bio.appendChild(paragraph);
+      rich.insertAdjacentElement("afterend",photoCol);photoCol.insertAdjacentElement("afterend",bio);
+    }
+    function runAll(){injectLayout();inject();injectRich();injectRob();}
     new MutationObserver(runAll).observe(document.documentElement,{childList:true,subtree:true});
     if(document.readyState!=="loading")runAll();else document.addEventListener("DOMContentLoaded",runAll);
   })();
