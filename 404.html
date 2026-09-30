@@ -101,6 +101,9 @@ Error generating stack: `+e.message+`
       var paragraph=document.createElement("p");
       paragraph.textContent="Robert McGraw serves as Vice President of Sales at Argos Legal Partners.";
       bio.appendChild(paragraph);
+      var contacts=document.createElement("div");contacts.className="contactLinks";
+      var email=document.createElement("a");email.href="mailto:robert@argoslegalpartners.com";
+      email.textContent="robert@argoslegalpartners.com";contacts.appendChild(email);bio.appendChild(contacts);
       rich.insertAdjacentElement("afterend",photoCol);photoCol.insertAdjacentElement("afterend",bio);
     }
     function runAll(){injectLayout();inject();injectRich();injectRob();}
