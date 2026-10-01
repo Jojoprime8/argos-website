@@ -98,9 +98,13 @@ Error generating stack: `+e.message+`
       var bio=document.createElement("div");bio.id="robBio";
       var name=document.createElement("h3");name.textContent="Robert McGraw";bio.appendChild(name);
       var title=document.createElement("span");title.textContent="Vice President of Sales";bio.appendChild(title);
-      var paragraph=document.createElement("p");
-      paragraph.textContent="Robert McGraw serves as Vice President of Sales at Argos Legal Partners.";
-      bio.appendChild(paragraph);
+      var paragraphs=[
+        "Robert McGraw serves as Vice President of Sales at Argos Legal Partners. He brings more than a decade of experience at the intersection of data, technology, and enterprise growth, spanning business intelligence, fintech, SaaS, and legal services.",
+        "Robert has built his career helping organizations make better decisions with better information. He has advised CFOs and risk leaders on predictive data and real-time intelligence platforms, positioning analytics-driven solutions as an alternative to legacy approaches. He has also developed partner ecosystems for high-growth SaaS platforms, and he has built new markets from the ground up through outbound strategy and disciplined pipeline development.",
+        "His experience extends directly into the legal market, where he has cultivated relationships with law firms and their leadership across the Mid-Atlantic. As a founder, he also built and scaled his own venture, combining digital lead generation, process automation, and a distributed team to drive rapid growth.",
+        "At Argos, Robert applies a data-driven, technology-forward approach to legal search. He helps the firm translate market intelligence into a clear understanding of each client's objectives and the talent landscape around them, so that every engagement is informed, selective, and built on insight rather than volume. He is based in Philadelphia."
+      ];
+      paragraphs.forEach(function(text){var paragraph=document.createElement("p");paragraph.textContent=text;bio.appendChild(paragraph);});
       var contacts=document.createElement("div");contacts.className="contactLinks";
       var email=document.createElement("a");email.href="mailto:robert@argoslegalpartners.com";
       email.textContent="robert@argoslegalpartners.com";contacts.appendChild(email);bio.appendChild(contacts);
